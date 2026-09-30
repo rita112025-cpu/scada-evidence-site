@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SCADA 三層證據查核架構：技術需求、業主管線規則、證據治理與版本稽核。" />
+  <title>SCADA 三層證據查核架構</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">SCADA / BASECOM / Cable Tray / BIM</p>
+      <h1>三層證據查核架構</h1>
+      <p class="lead">把「SCADA 要什麼」、「業主允許怎麼佈」、「哪個證據現在可以信」拆開管理，避免 AI 自行補值、誤用版本或把摘要當成正式證據。</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#architecture">查看架構</a>
+        <a class="btn ghost" href="#prompt">複製查核 Prompt</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="architecture" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Architecture</span>
+          <h2>三層分工</h2>
+          <p>三套 Skill 不合併，各自保留來源角色與證據邊界。</p>
+        </div>
+
+        <div class="grid three">
+          <article class="card layer-card">
+            <div class="badge">Layer 1</div>
+            <h3>SCADA 技術需求</h3>
+            <code>scada-xdmrt-tk01</code>
+            <p>查 SCADA 系統、設備、Cable / Fiber、EMC、Tray / Conduit、Equipment Room、送審狀態。</p>
+            <ul>
+              <li>技術資料索引與摘要</li>
+              <li>找出設備與系統要求</li>
+              <li>偵測送審與規格差異</li>
+            </ul>
+          </article>
+
+          <article class="card layer-card">
+            <div class="badge">Layer 2</div>
+            <h3>業主管線與 BIM 規則</h3>
+            <code>er4-appendix-c-utility-routing</code>
+            <p>查 BIM 綜合、高程層序、交叉避讓、房間限制、檢修空間、共同管架與 Cable Tray 淨距。</p>
+            <ul>
+              <li>業主管線佈設原則</li>
+              <li>跨專業空間協調</li>
+              <li>圖面與關鍵節點規範</li>
+            </ul>
+          </article>
+
+          <article class="card layer-card">
+            <div class="badge">Layer 3</div>
+            <h3>證據治理與版本稽核</h3>
+            <code>scada-basecom-evidence-audit</code>
+            <p>判斷資料層級、版本、衝突、待確認、過度推論修正，以及人工證據的引用界線。</p>
+            <ul>
+              <li>A–E 資料層級</li>
+              <li>L1–L6 證據等級</li>
+              <li>衝突並存、不自選數值</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Workflow</span>
+          <h2>實際查核流程</h2>
+        </div>
+
+        <div class="flow">
+          <div class="flow-step"><span>1</span><strong>找到技術要求</strong><small>SCADA Skill</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-step"><span>2</span><strong>查業主管線規則</strong><small>Appendix C Skill</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-step"><span>3</span><strong>核對版本與證據</strong><small>Evidence Audit Skill</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-step"><span>4</span><strong>回查原始文件</strong><small>Revision / Page / Section</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-step"><span>5</span><strong>比對 CAD / Navisworks</strong><small>量測與空間條件</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-step"><span>6</span><strong>判斷能否畫入設計</strong><small>PASS / TBD / CONFLICT</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <div class="section-head left">
+            <span class="kicker">Decision Rules</span>
+            <h2>核心規則</h2>
+          </div>
+          <div class="rules">
+            <div class="rule"><b>01</b><span>不得用一般工程常識補缺失數值。</span></div>
+            <div class="rule"><b>02</b><span>不得因版本號較新，就自動認定契約效力較高。</span></div>
+            <div class="rule"><b>03</b><span>發現多個數值時，不自行選其中一個。</span></div>
+            <div class="rule"><b>04</b><span>TBD、待確認、N2、N3 不得轉寫成已確認要求。</span></div>
+            <div class="rule"><b>05</b><span>LINE、白板、逐字稿、會議口頭內容不得自動提升為正式契約證據。</span></div>
+            <div class="rule"><b>06</b><span>涉及正式設計、送審、採購、數量或施工決策時，必須回查原始證據。</span></div>
+          </div>
+        </div>
+
+        <aside class="card notice">
+          <h3>目前已知限制</h3>
+          <ul>
+            <li>Appendix C 的附件 A 淨距矩陣與圖 1，因 PDF 表格抽取錯位，個別格值不能直接作為最終依據。</li>
+            <li>水管距牆表格原文未列 DN50–DN75，不得內插或自行補值。</li>
+            <li><code>document_findings.json</code> 尚未納入完整原文，FIND-001～FIND-032 目前僅能視為二手摘要。</li>
+            <li><code>scada-basecom-evidence-audit</code> 是快照；最新狀態應優先回查 <code>_evidence_governance/02_current_working/</code>。</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Output Standard</span>
+          <h2>建議輸出格式</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>技術要求</th>
+                <th>業主規則</th>
+                <th>證據狀態</th>
+                <th>目前判定</th>
+                <th>原始來源</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Tray 路由</td><td>SCADA Skill</td><td>Appendix C Skill</td><td>已核對 / 待回查</td><td><span class="status pass">PASS</span></td><td>Revision / Page / Section</td></tr>
+              <tr><td>淨距</td><td>規格要求</td><td>附件 A</td><td>表格抽取不可靠</td><td><span class="status src">SOURCE CHECK REQUIRED</span></td><td>原 PDF</td></tr>
+              <tr><td>高程</td><td>未明示</td><td>層序原則</td><td>缺現場量測</td><td><span class="status measure">MEASUREMENT REQUIRED</span></td><td>Navisworks / CAD</td></tr>
+              <tr><td>版本差異</td><td>V6</td><td>SoW V4</td><td>契約效力衝突</td><td><span class="status conflict">CONFLICT</span></td><td>Evidence Audit</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="status-note">判定建議僅使用：PASS、FAIL、CONFLICT、TBD、UNVERIFIED、MEASUREMENT REQUIRED、SOURCE CHECK REQUIRED。</p>
+      </div>
+    </section>
+
+    <section id="prompt" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Reusable Prompt</span>
+          <h2>SCADA Cable Tray 三層查核 Prompt</h2>
+          <p>可直接貼給 Claude Code / Codex，要求同時使用三套 Skill。</p>
+        </div>
+
+        <div class="code-card">
+          <button id="copyBtn" class="copy-btn" type="button">複製 Prompt</button>
+          <pre id="promptText">你是本專案的 SCADA / BIM 管線路由與證據查核助手。
+
+必須同時使用以下三套 Skill：
+
+1. scada-xdmrt-tk01
+   - SCADA 系統、設備、Cable / Fiber、EMC、Tray / Conduit、送審資訊
+
+2. er4-appendix-c-utility-routing
+   - 業主需求書附錄 C、BIM 綜合、高程層序、交叉避讓、檢修空間、共同管架、Cable Tray 淨距、圖面規範
+
+3. scada-basecom-evidence-audit
+   - 資料層級、證據等級、版本、SoW / BoQ / 報價衝突、待確認事項、overclaim 修正、人工證據引用界線
+
+工作順序：
+A. 先找 SCADA 技術要求。
+B. 再找業主管線與 BIM 規則。
+C. 用 evidence-audit 檢查版本、來源、衝突與待確認狀態。
+D. 涉及數值、契約、審查、施工或正式設計決策時，回查原始文件。
+E. 再跟我提供的 Navisworks / CAD 量測比較。
+
+規則：
+- 不得用一般工程常識補缺失數值。
+- 不得因版本號較新就自動選新版。
+- 發現衝突時必須並列，不得自行選答案。
+- TBD / 未驗證 / N2 / N3 不得轉為 CONFIRMED。
+- LINE、白板、逐字稿、口頭說法不得自動視為正式契約依據。
+- Appendix C 附件 A 淨距矩陣與圖 1 若涉及精確數值，必須回查原 PDF。
+- FIND-001～FIND-032 若要作正式依據，必須回查 document_findings.json 原文。
+- evidence-audit 為快照；最新工作狀態優先回查 _evidence_governance/02_current_working/。
+
+輸出表格：
+| 項目 | 技術要求 | 業主規則 | 證據狀態 | 目前判定 | 原始來源 |
+
+判定只能使用：
+PASS / FAIL / CONFLICT / TBD / UNVERIFIED / MEASUREMENT REQUIRED / SOURCE CHECK REQUIRED
+
+最後分成：
+1. 可直接畫入 CAD / BIM
+2. 不可直接畫入 CAD / BIM
+3. 必須回查原始文件
+4. 必須補現場或模型量測</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>SCADA Evidence-First Workflow</strong>
+        <p>技術需求 × 業主規則 × 證據治理</p>
+      </div>
+      <div class="footer-note">本頁為工作流程與 Skill 使用說明，不取代契約原文、核定圖說或正式送審文件。</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
