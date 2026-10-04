@@ -131,3 +131,16 @@ pre { margin: 0; padding: 58px 24px 24px; white-space: pre-wrap; overflow-wrap: 
   .card { padding: 18px; }
   pre { font-size: .83rem; }
 }
+
+/* ---------- pull-box section ---------- */
+.stats { grid-template-columns: repeat(6, 1fr); margin-bottom: var(--gap); }
+.stat { padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
+.stat b { font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.1; letter-spacing: -.02em; }
+.stat span { font-size: .85rem; color: var(--muted); }
+.stat.accent span { color: #3a3a3a; }
+.pb-table { margin-bottom: var(--gap); }
+.pb-split .card h3, .pb-split .notice h3 { margin-top: 0; }
+.pb-split li { margin-bottom: 10px; color: #cfcfc9; }
+
+@media (max-width: 980px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }

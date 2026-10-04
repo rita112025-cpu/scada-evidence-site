@@ -78,6 +78,60 @@
       </div>
     </section>
 
+    <section id="pullbox" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">New Skill · 2026-10-04</span>
+          <h2>拉線箱規範查核</h2>
+          <p><code>xdmrt-pullbox-requirements</code>：整理業主需求書、施工規範、Hitachi Appendix E 等 8 份來源，每條規則都可追溯到 PDF 頁碼與原文。</p>
+        </div>
+
+        <div class="bento stats">
+          <div class="tile accent stat"><b>94</b><span>可執行規則</span></div>
+          <div class="tile stat"><b>61</b><span>confirmed</span></div>
+          <div class="tile stat"><b>15</b><span>conflicting</span></div>
+          <div class="tile stat"><b>18</b><span>needs-review</span></div>
+          <div class="tile stat"><b>8</b><span>份來源</span></div>
+          <div class="tile stat"><b>8 / 18</b><span>衝突組 / 待確認項</span></div>
+        </div>
+
+        <div class="table-wrap pb-table">
+          <table>
+            <thead><tr><th>查核項目</th><th>來源內容</th><th>規則 ID</th><th>狀態</th></tr></thead>
+            <tbody>
+              <tr><td>無拉線箱時連續 90° 彎頭</td><td>第 3 冊：≤ 2 個；Hitachi：3×90°＝270°／4×90°＝360°／通訊埋設 ≤ 180°</td><td>BND-001 · C-02</td><td><span class="status conflict">CONFLICT</span></td></tr>
+              <tr><td>彎曲半徑</td><td>XLPE 電纜 10×（第 3 冊）；一般電纜 5×（Hitachi）</td><td>C-01</td><td><span class="status conflict">CONFLICT</span></td></tr>
+              <tr><td>箱體材質</td><td>鋼製／灰鑄鐵；或室內 SUS#304、屋外／軌道區 SUS#316 ≥ 1.5 mm IP65</td><td>C-04</td><td><span class="status conflict">CONFLICT</span></td></tr>
+              <tr><td>拉線盒內接線</td><td>不准接線，除非業主核可；須有蓋、圓頭黃銅螺釘</td><td>BOX-003 / 004</td><td><span class="status pass">CONFIRMED</span></td></tr>
+              <tr><td>檢修門</td><td>≥ 500 × 500 mm；位置標示於竣工圖</td><td>ACC-003</td><td><span class="status src">SOURCE CHECK REQUIRED</span></td></tr>
+              <tr><td>長直管路加設拉線箱</td><td>「必要時」設置，無距離規定</td><td>APP-001</td><td><span class="status src">TBD</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="split pb-split">
+          <aside class="card notice">
+            <h3>已讀來源裡找不到（不補值）</h3>
+            <ul>
+              <li>拉線箱長寬高尺寸，以及與管徑／電纜外徑的倍數關係。</li>
+              <li>直線段拉線箱設置間距；衍生文件的 30–45 公尺在正式來源找不到。</li>
+              <li>U 型／反向拉線專項規定；僅 Hitachi 規定電纜架內電纜不得折返。</li>
+            </ul>
+            <p class="status-note">「未找到」不等於「不存在」。以上全部列入 needs-review。</p>
+          </aside>
+          <div class="card">
+            <h3>使用界線</h3>
+            <ul>
+              <li>引文與頁碼已逐字核對：137 筆引文全數在指定頁面找到，抽樣 14 條回原 PDF 重抽 14/14 吻合。吻合只代表引文正確，不代表語意解讀無誤。</li>
+              <li>11 條需回原 PDF 視覺查核（第 9 冊 p642、p696、p703；第 5 冊 p105–106 色碼表）。</li>
+              <li>PDF 以 pdftotext 抽取，表格欄位可能被打散；PNG×2、XLSX×1 尚未解析。</li>
+              <li>「拉線箱／接線箱／轉接箱」是否同一物件，來源無定論；材質衝突 C-04 僅並列、不裁決。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section alt">
       <div class="wrap">
         <div class="section-head">
@@ -165,14 +219,14 @@
         <div class="section-head">
           <span class="kicker">Reusable Prompt</span>
           <h2>SCADA Cable Tray 三層查核 Prompt</h2>
-          <p>可直接貼給 Claude Code / Codex，要求同時使用三套 Skill。</p>
+          <p>可直接貼給 Claude Code / Codex，要求同時使用三套 Skill；拉線箱題目可再加上 xdmrt-pullbox-requirements。</p>
         </div>
 
         <div class="code-card">
           <button id="copyBtn" class="copy-btn" type="button">複製 Prompt</button>
           <pre id="promptText">你是本專案的 SCADA / BIM 管線路由與證據查核助手。
 
-必須同時使用以下三套 Skill：
+必須同時使用以下三套 Skill（涉及拉線箱時，另加用 xdmrt-pullbox-requirements）：
 
 1. scada-xdmrt-tk01
    - SCADA 系統、設備、Cable / Fiber、EMC、Tray / Conduit、送審資訊
