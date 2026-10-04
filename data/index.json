@@ -1,0 +1,10 @@
+{
+  "datasets": [
+    {
+      "id": "pull-box",
+      "title": "拉線箱規範查核",
+      "file": "data/pull-box.json",
+      "skill": "xdmrt-pullbox-requirements"
+    }
+  ]
+}

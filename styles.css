@@ -144,3 +144,9 @@ pre { margin: 0; padding: 58px 24px 24px; white-space: pre-wrap; overflow-wrap: 
 
 @media (max-width: 980px) { .stats { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+.pb-status { background: var(--tile-2); border: 1px dashed var(--accent); border-radius: var(--radius); padding: 16px 20px; color: var(--text); margin: 0 0 var(--gap); }
+.pb-status[hidden] { display: none; }
+
+/* prevent long unbroken <code> from widening single-column grids on mobile */
+.split > *, .grid > * { min-width: 0; }
+code { overflow-wrap: anywhere; }

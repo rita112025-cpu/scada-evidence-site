@@ -1,0 +1,69 @@
+{
+  "skill": "xdmrt-pullbox-requirements",
+  "kicker": "New Skill · 2026-10-04",
+  "intro": "整理業主需求書、施工規範、Hitachi Appendix E 等 8 份來源，每條規則都可追溯到 PDF 頁碼與原文。",
+  "summary": {
+    "total_rules": 94,
+    "confirmed": 61,
+    "conflicting": 15,
+    "needs_review": 18,
+    "sources": 8,
+    "conflict_groups": 8,
+    "open_items": 18,
+    "visual_pdf_checks": 11
+  },
+  "quick_reference": [
+    {
+      "item": "無拉線箱時連續 90° 彎頭",
+      "content": "第 3 冊：≤ 2 個；Hitachi：3×90°＝270°／4×90°＝360°／通訊埋設 ≤ 180°",
+      "refs": ["BND-001", "C-02"],
+      "status": "CONFLICT"
+    },
+    {
+      "item": "彎曲半徑",
+      "content": "XLPE 電纜 10×（第 3 冊）；一般電纜 5×（Hitachi）",
+      "refs": ["C-01"],
+      "status": "CONFLICT"
+    },
+    {
+      "item": "箱體材質",
+      "content": "鋼製／灰鑄鐵；或室內 SUS#304、屋外／軌道區 SUS#316 ≥ 1.5 mm IP65",
+      "refs": ["C-04"],
+      "status": "CONFLICT"
+    },
+    {
+      "item": "拉線盒內接線",
+      "content": "不准接線，除非業主核可；須有蓋、圓頭黃銅螺釘",
+      "refs": ["BOX-003 / 004"],
+      "status": "CONFIRMED"
+    },
+    {
+      "item": "檢修門",
+      "content": "≥ 500 × 500 mm；位置標示於竣工圖",
+      "refs": ["ACC-003"],
+      "status": "SOURCE CHECK REQUIRED"
+    },
+    {
+      "item": "長直管路加設拉線箱",
+      "content": "「必要時」設置，無距離規定",
+      "refs": ["APP-001"],
+      "status": "TBD"
+    }
+  ],
+  "not_found_in_sources": [
+    "拉線箱長寬高尺寸，以及與管徑／電纜外徑的倍數關係。",
+    "直線段拉線箱設置間距；衍生文件的 30–45 公尺在正式來源找不到。",
+    "U 型／反向拉線專項規定；僅 Hitachi 規定電纜架內電纜不得折返。"
+  ],
+  "not_found_note": "「未找到」不等於「不存在」。以上全部列入 needs-review。",
+  "limitations": [
+    "引文與頁碼已逐字核對：137 筆引文全數在指定頁面找到，抽樣 14 條回原 PDF 重抽 14/14 吻合。吻合只代表引文正確，不代表語意解讀無誤。",
+    "11 條需回原 PDF 視覺查核（第 9 冊 p642、p696、p703；第 5 冊 p105–106 色碼表）。",
+    "PDF 以 pdftotext 抽取，表格欄位可能被打散；PNG×2、XLSX×1 尚未解析。",
+    "「拉線箱／接線箱／轉接箱」是否同一物件，來源無定論；材質衝突 C-04 僅並列、不裁決。"
+  ],
+  "prompt_usage": {
+    "lead_note": "；拉線箱題目可再加上 xdmrt-pullbox-requirements",
+    "prompt_note": "（涉及拉線箱時，另加用 xdmrt-pullbox-requirements）"
+  }
+}
